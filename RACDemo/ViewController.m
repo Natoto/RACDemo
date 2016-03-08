@@ -7,12 +7,15 @@
 //
 #import "SigninModel.h"
 #import "ViewController.h"
+#import "DetailViewController.h"
+
 #import <ReactiveCocoa/ReactiveCocoa.h>
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *txt_username;
 @property (weak, nonatomic) IBOutlet UITextField *txt_password;
 @property (weak, nonatomic) IBOutlet UIButton *btn_login;
 
+@property (strong, nonatomic) RACCommand * commend;
 @end
 
 @implementation ViewController
@@ -20,110 +23,174 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    RACSignal *letters = [@"A B C D E F G H I" componentsSeparatedByString:@" "].rac_sequence.signal;
+    for (int index = 0; index < self.array.count; index++) {
+        CELL_STRUCT * cellstruct = [CELL_STRUCT cell_x_x_struct:self.array[index] detailvalue:nil target:self selectAction:DEFAULT_CELL_SELECT_ACTION];
+        cellstruct.key_indexpath = KEY_INDEXPATH(0, index);
+        [self.dataDictionary setObject:cellstruct forKey:cellstruct.key_indexpath];
+    }
     
-    // Outputs: A B C D
-    [letters subscribeNext:^(NSString *x) {
-        NSLog(@"%@", x);
-    }];
+    [self init_commend];
     
-    self.btn_login.enabled = NO;
-    
-    RACSignal * validUsernameSignal = [self.txt_username.rac_textSignal map:^id(NSString * value) {
-        BOOL valide = value.length > 3;
-        return @(valide);
-    }];
-    
-    RACSignal * validPasswordSignal = [self.txt_password.rac_textSignal map:^id(NSString * value) {
-        BOOL valide = value.length > 3;
-        return @(valide);
-    }];
-    
-    
-    RAC(self.txt_username, backgroundColor) =
-    [validUsernameSignal
-     map:^id(NSNumber *passwordValid){
-         return[passwordValid boolValue] ? [UIColor clearColor]:[UIColor yellowColor];
-     }];
-    
-    RAC(self.txt_password, backgroundColor) =
-    [validPasswordSignal
-     map:^id(NSNumber *passwordValid){
-         return[passwordValid boolValue] ? [UIColor clearColor]:[UIColor yellowColor];
-     }];
-    
-    RACSignal * signUpActiveSignal = [RACSignal combineLatest:@[validUsernameSignal,validPasswordSignal] reduce:^id(NSNumber * valideuser,NSNumber * validpassword){
-        return @(valideuser.boolValue && validpassword.boolValue);
-    }];
-    
-    [signUpActiveSignal subscribeNext:^(NSNumber *valide) {
-        self.btn_login.enabled = valide.boolValue;
-    }];
-
-    
-    [[[self.btn_login rac_signalForControlEvents:UIControlEventTouchUpInside] flattenMap:^id(id value) {
-        return [self signInSignal];
-    }] subscribeNext:^(SMSLoginResp2 * x) {
-        NSLog(@"Sign in result: %@", x);
-    }];
-    
-//    RAC(self.btn_login, enabled) =
-//    [validUsernameSignal
-//     map:^id(NSNumber *passwordValid){
-//         return [passwordValid boolValue]; //? [UIColor clearColor]:[UIColor yellowColor];
-//     }];
-    
-}
-
-- (RACSignal *)signInSignal {
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber){
-        
-        [[SigninModel sharedInstance] req_SMSLoginReq2WithPhone:self.txt_username.text password:self.txt_password.text response:^(SMSLoginResp2 *response) {
-            [subscriber sendNext:response];
-            [subscriber sendCompleted];
-        } errorHandler:^(NSError *error) {
-            [subscriber sendError:error];
-        }];
-        return nil;
+    [[SigninModel sharedInstance].delegateSignal subscribeNext:^(id x) {
+       
+        NSLog(@"收到消息 %@",x);
     }];
 }
+-(NSArray *)array
+{
+    return  @[@"RACSignal",@"RACSubject",@"RACReplaySubject",@"delegateSignal",@"sequence",@"RACCommend"];
+}
 
+GET_CELL_SELECT_ACTION(cellstruct)
+{
+    NSString * rowstr = KEY_INDEXPATH_ROW_STR(cellstruct.key_indexpath);
+    switch (rowstr.intValue) {
+        case 0:
+            [self test_txtsignal_map_filter_subcribe];
+            break;
+        case 1:
+            [self test_racsubject];
+            break;
+        case 2:
+            [self test_replaysubject];
+            break;
+        case 3:
+            [self test_delegatesignal];
+            break;
+        case 4:
+            [self test_sequeue];
+            break;
+        case 5:
+            [self test_commend];
+            break;
+        case 6:
+            break;
+        default:
+            break;
+    }
+}
 
 -(void)test_txtsignal_map_filter_subcribe
 {
-    
-    //    [self.txt_username.rac_textSignal subscribeNext:^(id x){
-    //        NSLog(@"++++%@", x);
-    //    }];
-    
-    
-    //    [[self.txt_username.rac_textSignal filter:^BOOL(id value) {
-    //        NSString *str = (NSString *)value;
-    //        return str.length>3;
-    //    }] subscribeNext:^(id x) {
-    //        NSLog(@"---->%@", x);
-    //        self.btn_login.enabled = YES;
-    //    }];
-    
-    [[[self.txt_username.rac_textSignal map:^id(NSString * value) {
-        return @(value.length);
-    }]filter:^BOOL(id value) {
-        NSString *str = (NSString *)value;
-        return str.intValue>3;
-    }] subscribeNext:^(id x) {
-        NSLog(@"---->%@", x);
-        self.btn_login.enabled = YES;
+    RACSignal * signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        [subscriber sendNext:@1];
+        [subscriber sendCompleted];
+        NSLog(@"发送信号1");
+        return [RACDisposable disposableWithBlock:^{
+            NSLog(@"信号被销毁");
+        }];
     }];
     
-    [self.txt_username.rac_textSignal subscribeCompleted:^{
-        NSLog(@"输入完成");
+    // 3.订阅信号,才会激活信号.
+    [signal subscribeNext:^(id x) {
+        // block调用时刻：每当有信号发出数据，就会调用block.
+        NSLog(@"接收到数据:%@",x);
+    }];
+}
+
+-(void)test_racsubject
+{
+    RACSubject * subject = [RACSubject subject];
+    [subject subscribeNext:^(id x){
+        NSLog(@"第一个订阅者 %@",x);
     }];
     
-    [self.txt_username.rac_textSignal subscribeError:^(NSError *error) {
-        NSLog(@"%@",error);
+    [subject subscribeNext:^(id x){
+        NSLog(@"第二个订阅者 %@",x);
+    }];
+    [subject sendNext:@"1"];
+    
+    //后订阅的只能收到后面发送过来的消息
+    [subject subscribeNext:^(id x){
+        NSLog(@"第三个订阅者 %@",x);
+    }];
+    
+    [subject sendNext:@"2"];
+    
+}
+-(void)test_replaysubject
+{
+    RACReplaySubject  * replaysubject = [RACReplaySubject subject];
+    [replaysubject sendNext:@1];
+    [replaysubject sendNext:@2];
+    
+    [replaysubject subscribeNext:^(id x) {
+        NSLog(@"第一个订阅者接收到的数据%@",x);
+    }];
+    
+    [replaysubject subscribeNext:^(id x) {
+        NSLog(@"第二个订阅者接收到的数据%@",x);
+    }];
+}
+
+-(void)test_delegatesignal
+{
+    UIStoryboard* mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    DetailViewController *ctr = [mainStoryboard  instantiateViewControllerWithIdentifier:@"DetailViewController"];
+    ctr.delegateSignal = [RACSubject  subject];
+    [ctr.delegateSignal subscribeNext:^(id x) {
+        NSLog(@"点击了通知按钮");
+    }];
+    [self.navigationController pushViewController:ctr animated:YES];
+}
+
+
+-(void)test_sequeue
+{
+    NSArray * numbers = @[@1,@2,@3,@4];
+    [numbers.rac_sequence.signal subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    }];
+    
+    NSDictionary * dict = @{@"name":@"xmg",@"age":@13};
+    [dict.rac_sequence.signal subscribeNext:^(RACTuple * x) {
+        
+        RACTupleUnpack(NSString *key,NSString * value) = x;
+        NSLog(@"%@ %@",key,value);
+        
     }];
     
 }
+
+-(void)test_commend
+{
+    [self.commend execute:@0];
+}
+
+-(void)init_commend
+{
+    RACCommand * commend =[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        NSLog(@"执行命令");
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            [subscriber sendNext:@"请求数据"];
+            [subscriber sendCompleted];
+            return nil;
+        }];
+    }];
+    _commend = commend;
+    [commend.executionSignals subscribeNext:^(id x) {
+        
+        [x subscribeNext:^(id x) {
+            NSLog(@"========> %@",x);
+        }];
+    }];
+    
+    [commend.executionSignals.switchToLatest subscribeNext:^(id x) {
+        NSLog(@"========> %@",x);
+    }];
+    
+    [[commend.executing skip:1] subscribeNext:^(id x) {
+        if ([x boolValue]) {
+            NSLog(@"正在执行");
+        }
+        else
+        {
+            NSLog(@"执行完成");
+        }
+    }];
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

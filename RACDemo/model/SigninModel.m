@@ -92,6 +92,9 @@ DEF_SINGLETON(SigninModel)
         [self setSMSLoginResp:resp mobile:phone deviceToken:@""];
         response(resp);
         NSLog(@"%@", responsejson);
+        if (self.delegateSignal) {
+            [self.delegateSignal sendNext:resp];
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         err(error);
     }];
@@ -127,6 +130,14 @@ DEF_SINGLETON(SigninModel)
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         err(error);
     }];
+}
+
+-(RACSubject *)delegateSignal
+{
+    if (!_delegateSignal) {
+        _delegateSignal = [RACSubject subject];
+    }
+    return _delegateSignal;
 }
 
 @end

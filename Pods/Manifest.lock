@@ -20,7 +20,10 @@ PODS:
   - AFNetworking/UIKit (2.6.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - HBKit (0.4.0):
+    - MJRefresh (~> 2.2.0)
   - MBProgressHUD (0.9.1)
+  - MJRefresh (2.2.1)
   - ReactiveCocoa (2.3.1):
     - ReactiveCocoa/UI (= 2.3.1)
   - ReactiveCocoa/Core (2.3.1):
@@ -31,12 +34,24 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.6.1)
+  - HBKit (from `https://github.com/Natoto/HBFastTableViewCotroller.git`)
   - MBProgressHUD (~> 0.9.1)
   - ReactiveCocoa
 
+EXTERNAL SOURCES:
+  HBKit:
+    :git: https://github.com/Natoto/HBFastTableViewCotroller.git
+
+CHECKOUT OPTIONS:
+  HBKit:
+    :commit: 9fbdb7c59f3bb41fef2c409c918b1d2b677cd793
+    :git: https://github.com/Natoto/HBFastTableViewCotroller.git
+
 SPEC CHECKSUMS:
   AFNetworking: 8e4e60500beb8bec644cf575beee72990a76d399
+  HBKit: a3146b4b416f1ae3f0b9395f8583a203e9ca5ffc
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  MJRefresh: c3fa0387e8e97a11a9666639d2f815607edd1c2f
   ReactiveCocoa: 334468a83b2c5f669f7cfb9a084415ee23219b4f
 
 COCOAPODS: 0.39.0

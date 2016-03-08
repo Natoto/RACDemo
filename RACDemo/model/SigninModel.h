@@ -11,9 +11,15 @@
 
 #import "SMSLoginResp2.h"
 #import "PassportLoginResp.h"
-
+#import <ReactiveCocoa/ReactiveCocoa.h>
 @interface SigninModel : BaseModel
 AS_SINGLETON(SigninModel)
+
+
+@property(nonatomic,strong) RACSubject * delegateSignal;
+
+@property(nonatomic,strong,readwrite) NSString * phone;
+@property(nonatomic,strong) NSString * password;
 
 - (void)req_SMSLoginReq2WithPhone:(NSString *)phone
                          password:(NSString *)password

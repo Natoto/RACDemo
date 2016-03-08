@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		333923DD1C8D52A20096184C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 333923DC1C8D52A20096184C /* main.m */; };
 		333923E01C8D52A20096184C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 333923DF1C8D52A20096184C /* AppDelegate.m */; };
-		333923E31C8D52A20096184C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 333923E21C8D52A20096184C /* ViewController.m */; };
 		333923E61C8D52A20096184C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 333923E41C8D52A20096184C /* Main.storyboard */; };
 		333923E81C8D52A30096184C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 333923E71C8D52A30096184C /* Assets.xcassets */; };
 		333923EB1C8D52A30096184C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 333923E91C8D52A30096184C /* LaunchScreen.storyboard */; };
@@ -331,6 +330,9 @@
 		333927B41C8D99CE0096184C /* CacheCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 333927AB1C8D99CE0096184C /* CacheCenter.m */; };
 		333927B51C8D99CE0096184C /* YTKKeyValueStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 333927AD1C8D99CE0096184C /* YTKKeyValueStore.m */; };
 		333927B71C8D9D490096184C /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 333927B61C8D9D490096184C /* libsqlite3.0.tbd */; };
+		33FA617B1C8E854000FED55E /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FA61781C8E854000FED55E /* DetailViewController.m */; };
+		33FA617C1C8E854000FED55E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FA617A1C8E854000FED55E /* LoginViewController.m */; };
+		33FA617F1C8E856400FED55E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FA617E1C8E856400FED55E /* ViewController.m */; };
 		56CF8AD90C9AFB54184FFD25 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B45173B4DF9B0DB2F9B43380 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -339,8 +341,6 @@
 		333923DC1C8D52A20096184C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		333923DE1C8D52A20096184C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		333923DF1C8D52A20096184C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		333923E11C8D52A20096184C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		333923E21C8D52A20096184C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		333923E51C8D52A20096184C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		333923E71C8D52A30096184C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		333923EA1C8D52A30096184C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -981,6 +981,12 @@
 		333927AC1C8D99CE0096184C /* YTKKeyValueStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKKeyValueStore.h; sourceTree = "<group>"; };
 		333927AD1C8D99CE0096184C /* YTKKeyValueStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTKKeyValueStore.m; sourceTree = "<group>"; };
 		333927B61C8D9D490096184C /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		33FA61771C8E854000FED55E /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		33FA61781C8E854000FED55E /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		33FA61791C8E854000FED55E /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		33FA617A1C8E854000FED55E /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		33FA617D1C8E856400FED55E /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = RACDemo/ViewController.h; sourceTree = SOURCE_ROOT; };
+		33FA617E1C8E856400FED55E /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = RACDemo/ViewController.m; sourceTree = SOURCE_ROOT; };
 		B1AD8815A2BD7885C7E8F323 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B45173B4DF9B0DB2F9B43380 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5BB49147FE2ABB43F0437DD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1029,13 +1035,12 @@
 		333923DA1C8D52A20096184C /* RACDemo */ = {
 			isa = PBXGroup;
 			children = (
+				33FA61761C8E854000FED55E /* controllers */,
 				333927861C8D98420096184C /* model */,
 				333927821C8D98390096184C /* helper */,
 				333923F31C8D98320096184C /* network */,
 				333923DE1C8D52A20096184C /* AppDelegate.h */,
 				333923DF1C8D52A20096184C /* AppDelegate.m */,
-				333923E11C8D52A20096184C /* ViewController.h */,
-				333923E21C8D52A20096184C /* ViewController.m */,
 				333923E41C8D52A20096184C /* Main.storyboard */,
 				333923E71C8D52A30096184C /* Assets.xcassets */,
 				333923E91C8D52A30096184C /* LaunchScreen.storyboard */,
@@ -1781,6 +1786,19 @@
 			path = HBCacheCenter;
 			sourceTree = "<group>";
 		};
+		33FA61761C8E854000FED55E /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				33FA61771C8E854000FED55E /* DetailViewController.h */,
+				33FA61781C8E854000FED55E /* DetailViewController.m */,
+				33FA61791C8E854000FED55E /* LoginViewController.h */,
+				33FA617A1C8E854000FED55E /* LoginViewController.m */,
+				33FA617D1C8E856400FED55E /* ViewController.h */,
+				33FA617E1C8E856400FED55E /* ViewController.m */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
 		36373C2AB9A8CDD686335CDE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1943,6 +1961,7 @@
 				333926F61C8D98340096184C /* ChipsSponsorInfoResp.m in Sources */,
 				333926A71C8D98340096184C /* PiazzaPageReq.m in Sources */,
 				333926F11C8D98340096184C /* ChipsMusicItem.m in Sources */,
+				33FA617C1C8E854000FED55E /* LoginViewController.m in Sources */,
 				3339266E1C8D98340096184C /* DelEvaluateReq.m in Sources */,
 				333926C21C8D98340096184C /* SupportChipsPageReq.m in Sources */,
 				333926811C8D98340096184C /* GetChipsInfoReq.m in Sources */,
@@ -1968,7 +1987,6 @@
 				333926841C8D98340096184C /* GetTagTopicInfoReq.m in Sources */,
 				333926B71C8D98340096184C /* SMSChanelReq.m in Sources */,
 				333926C61C8D98340096184C /* TopicEvalPageReq.m in Sources */,
-				333923E31C8D52A20096184C /* ViewController.m in Sources */,
 				333927431C8D98340096184C /* PengWebUserInfoResp.m in Sources */,
 				333926AB1C8D98340096184C /* PmsgOverviewReq.m in Sources */,
 				333926F91C8D98340096184C /* CoinLogResp.m in Sources */,
@@ -2015,6 +2033,7 @@
 				333927251C8D98340096184C /* GiftOrdersResp.m in Sources */,
 				3339275D1C8D98340096184C /* TaglibInfo.m in Sources */,
 				333927091C8D98340096184C /* DelCommentResp.m in Sources */,
+				33FA617B1C8E854000FED55E /* DetailViewController.m in Sources */,
 				3339271B1C8D98340096184C /* FollowCoursePageResp.m in Sources */,
 				333926931C8D98340096184C /* MusicDetailReq.m in Sources */,
 				3339269D1C8D98340096184C /* PayInfoReq.m in Sources */,
@@ -2022,6 +2041,7 @@
 				333926D41C8D98340096184C /* UserFollowingReq.m in Sources */,
 				3339269A1C8D98340096184C /* NewsInfoReq.m in Sources */,
 				333927151C8D98340096184C /* EventItem.m in Sources */,
+				33FA617F1C8E856400FED55E /* ViewController.m in Sources */,
 				333926FF1C8D98340096184C /* ComparatorByTime.m in Sources */,
 				333926F81C8D98340096184C /* CoinLog.m in Sources */,
 				333926951C8D98340096184C /* MusicInfoReq.m in Sources */,
@@ -2343,10 +2363,11 @@
 			baseConfigurationReference = C5BB49147FE2ABB43F0437DD /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				DEFINES_MODULE = NO;
 				GCC_PREFIX_HEADER = RACDemo/RACDemo.pch;
 				INFOPLIST_FILE = RACDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pengpeng.RACDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2358,10 +2379,11 @@
 			baseConfigurationReference = B1AD8815A2BD7885C7E8F323 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				DEFINES_MODULE = NO;
 				GCC_PREFIX_HEADER = RACDemo/RACDemo.pch;
 				INFOPLIST_FILE = RACDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = pengpeng.RACDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
