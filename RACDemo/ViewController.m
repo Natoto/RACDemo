@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn_login;
 
 @property (strong, nonatomic) RACCommand * commend;
+
+
 @end
 
 @implementation ViewController
@@ -38,7 +40,7 @@
 }
 -(NSArray *)array
 {
-    return  @[@"RACSignal",@"RACSubject",@"RACReplaySubject",@"delegateSignal",@"sequence",@"RACCommend"];
+    return  @[@"RACSignal",@"RACSubject",@"RACReplaySubject",@"delegateSignal",@"sequence",@"RACCommend",@"test_liftselector"];
 }
 
 GET_CELL_SELECT_ACTION(cellstruct)
@@ -64,6 +66,7 @@ GET_CELL_SELECT_ACTION(cellstruct)
             [self test_commend];
             break;
         case 6:
+            [self test_liftselector];
             break;
         default:
             break;
@@ -190,6 +193,38 @@ GET_CELL_SELECT_ACTION(cellstruct)
     }];
 }
 
+-(void)test_liftselector
+{
+    RACSignal *signalA = [RACSignal createSignal:^RACDisposable *(id subscriber) {
+        double delayInSeconds = 2.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [subscriber sendNext:@"A"];
+            [subscriber sendCompleted];
+        });
+        return nil;
+    }];
+    RACSignal *signalB = [RACSignal createSignal:^RACDisposable *(id subscriber) {
+        [subscriber sendNext:@"B"];
+        [subscriber sendNext:@"Another B"];
+        [subscriber sendCompleted];
+        return nil;
+    }];
+    
+    RACSignal *signalC = [RACSignal createSignal:^RACDisposable *(id subscriber) {
+        [subscriber sendNext:@"C"];
+        [subscriber sendNext:@"Another C"];
+        [subscriber sendCompleted];
+        return nil;
+    }];
+    
+    [self rac_liftSelector:@selector(doA:withB:withC:) withSignals:signalA, signalB,signalC, nil];
+}
+
+- (void)doA:(NSString *)A withB:(NSString *)B withC:(NSString *)C
+{
+    NSLog(@"A:%@ and B:%@ C:%@", A, B,C);
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

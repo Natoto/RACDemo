@@ -44,7 +44,7 @@
         BOOL valide = value.length > 3;
         return @(valide);
     }];
-     
+    
     RAC(self.txt_username, backgroundColor) =
     [validUsernameSignal
      map:^id(NSNumber *passwordValid){
